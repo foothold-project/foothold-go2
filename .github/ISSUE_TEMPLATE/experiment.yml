@@ -1,0 +1,41 @@
+name: "🧪 실험"
+description: 가설 하나, 변경 하나
+title: "[실험] "
+labels: [experiment]
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: 가설
+      description: "무엇을 바꾸면 무엇이 좋아질 것이다 — 한 문장"
+      placeholder: "발 들어올림 보상 계수를 0.5→1.0 으로 올리면 계단 통과율이 오를 것이다"
+    validations:
+      required: true
+  - type: input
+    id: change
+    attributes:
+      label: 바꾸는 것 (반드시 하나)
+      placeholder: "reward.feet_clearance.weight = 1.0"
+    validations:
+      required: true
+  - type: input
+    id: baseline
+    attributes:
+      label: 대조할 기준선
+      placeholder: "EXPERIMENTS.md #0 (공개 체크포인트) 또는 직전 실험 #"
+    validations:
+      required: true
+  - type: textarea
+    id: metric
+    attributes:
+      label: 판정 지표와 통과선
+      placeholder: "험지 통과율 (100회) — 기준선 +5%p 이상이면 채택"
+    validations:
+      required: true
+  - type: checkboxes
+    id: after
+    attributes:
+      label: 종료 시
+      options:
+        - label: EXPERIMENTS.md 에 결과 한 줄 추가
+          required: true

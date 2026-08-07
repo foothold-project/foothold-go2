@@ -1,0 +1,32 @@
+# ══ 학습 산출물 — 절대 커밋 금지 ══
+# 한 번 커밋되면 히스토리에서 못 지우고 레포가 GB 단위로 부푼다
+*.pt
+*.pth
+*.ckpt
+logs/
+outputs/
+runs/
+wandb/
+videos/
+
+# Isaac / Omniverse 캐시
+_isaac_sim/
+.nucleus/
+*.usd.tmp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.python-version
+
+# OS/에디터
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# 환경 파일 — 시크릿은 절대 레포에
+.env
+*.local
