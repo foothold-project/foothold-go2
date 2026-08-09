@@ -28,18 +28,10 @@ FOOTHOLD 의 실개발 레포. 시뮬 학습(Isaac Lab)부터 실기 배포까�
 
 ## 브랜치 전략
 
-```
-main        배포·제출 가능한 상태만. dev 에서 PR 로만 들어온다
- ↑ PR
-dev         통합 브랜치
- ↑ PR
-feature/*   feature/12-obs-tuning 처럼 이슈 번호를 붙인다
-```
+`feature/이슈번호-이름` → PR → `dev` → PR → `main`. **main 직접 push 금지.**
+상세와 도식 = [협업 규칙 §5](https://foothold-project.vercel.app/collab.html) — 팀 전 규칙의 단일 진실.
 
-- main 직접 push 금지 (룰셋으로 강제)
-- PR 본문에 `Closes #번호` → merge 시 이슈 닫힘 → 보드 Done → 디스코드 알림
-
-## 실험 규율 — 두 가지
+## 실험 규율 — 두 가지 (팀 공통 규칙 · [COLLAB §13](https://foothold-project.vercel.app/collab.html))
 
 **① 한 번에 하나만 바꾼다.** 두 개 바꾸면 어느 쪽 효과인지 모른다.
 **② 실험은 [EXPERIMENTS.md](EXPERIMENTS.md) 에 남긴다.** 기준 곡선과 대조 없는 실험은 안 한 것과 같다.
