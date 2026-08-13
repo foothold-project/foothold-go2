@@ -1,0 +1,33 @@
+name: 실험
+description: 가설 하나, 변경 하나. 결과는 숫자로 판정합니다.
+title: "[실험] "
+labels: [experiment]
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: 무엇을 바꾸면 무엇이 좋아지나
+      description: 바꾸는 것은 반드시 하나. 판정 기준(어떤 숫자를 보나)까지 적으면 더 좋습니다.
+      placeholder: |
+        마찰 랜덤화 범위를 0.4~1.2 → 0.2~1.4 로 넓히면 통과율이 오를 것이다.
+        (판정: 기준선 86.7% 대비 통과율)
+    validations:
+      required: true
+  - type: dropdown
+    id: quest
+    attributes:
+      label: 어느 갈래인가
+      description: 이슈가 다섯 갈래 중 하나에 자동으로 묶입니다. 애매하면 운영.
+      options:
+        - "평가 체계 (통과율·자동 평가·기준선)"
+        - "험지 환경 (지형 제작·3DGS)"
+        - "정책 학습 (학습·보상·실험)"
+        - "실기 전이 (sim2sim·ROS2·실기)"
+        - "운영 (문서·회의·인프라·발표)"
+    validations:
+      required: true
+  - type: textarea
+    id: memo
+    attributes:
+      label: 메모 (선택)
+      description: 예상 비용(학습 1회 약 2시간 15분), 참고. 비워도 됩니다.
