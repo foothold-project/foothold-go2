@@ -2,7 +2,6 @@ name: 실험
 description: 가설 하나, 변경 하나. 결과는 숫자로 판정합니다.
 title: "[실험] "
 labels: [experiment]
-type: Task
 body:
   - type: textarea
     id: hypothesis
