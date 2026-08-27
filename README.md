@@ -1,4 +1,4 @@
-# foothold-rl: 학습·배포 코드
+# foothold-go2: 트랙 A 시뮬레이션 · 트랙 B 실기 자율주행
 
 FOOTHOLD 의 실개발 레포. 시뮬 학습(Isaac Lab)부터 실기 배포까지의 코드가 산다.
 문서·회의록은 [foothold-lab](https://github.com/foothold-project/foothold-lab),
@@ -28,7 +28,7 @@ FOOTHOLD 의 실개발 레포. 시뮬 학습(Isaac Lab)부터 실기 배포까�
 
 ## 브랜치 전략
 
-`feature/이슈번호-이름` → PR → `dev` → PR → `main`. **main 직접 push 금지.**
+`feature/작업명-이름` → PR → `dev` → PR → `main`. **main 직접 push 금지.**
 상세와 도식 = [협업 규칙 §5](https://foothold-project.vercel.app/collab.html) · 팀 전 규칙의 단일 진실.
 
 ## 실험 규율: 두 가지 (팀 공통 규칙 · [COLLAB §13](https://foothold-project.vercel.app/collab.html))
