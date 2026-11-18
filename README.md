@@ -4,6 +4,20 @@ FOOTHOLD 의 실개발 레포. 시뮬 학습(Isaac Lab)부터 실기 배포까�
 문서·회의록은 [foothold-lab](https://github.com/foothold-project/foothold-lab),
 공개 사이트는 https://foothold-project.vercel.app
 
+## 지금 이 저장소의 일 (2026-11-18 갱신)
+
+이 저장소는 이제 **실기 Go2 X · 저수준 제어 · 최종 배포**를 맡는다. 시뮬 학습 실험은 `foothold-lab`,
+앱 코드는 `foothold-app` 에서 한다. 세 저장소의 역할과 실기 안전선은 [AGENTS.md](AGENTS.md) 1a · 5a · 5b 절.
+
+| 무엇 | 어디 |
+|---|---|
+| 실기 장비 | Go2 X · Jetson Orin NX 16GB · Intel RealSense D435i · Unitree L2 |
+| 정책 정본 (시뮬) | `foothold-lab` 의 정본 3 (`start-m15500`) 묶음 · 여기에는 sha 대조한 사본만 |
+| 앱 연결 | `foothold-app` 의 `contracts/` 약속 · 이 저장소는 앱 태그를 가리키기만 함 |
+| 실기 측정 원본 · 인수인계 | `foothold-lab` (비공개) |
+
+아래 환경 고정값과 성능 기준선은 8 월 시뮬 트랙 시절의 기록이다. 지금 학습 환경은 `foothold-lab` 기준이다.
+
 ## 환경 고정값: 바꾸려면 팀 합의
 
 | 항목 | 값 | 왜 고정인가 |
