@@ -6,7 +6,7 @@ FOOTHOLD 의 실개발 레포. 시뮬 학습(Isaac Lab)부터 실기 배포까�
 
 ## 지금 이 저장소의 일 (2026-11-18 갱신)
 
-이 저장소는 이제 **실기 Go2 X · 저수준 제어 · 최종 배포**를 맡는다. 시뮬 학습 실험은 `foothold-lab`,
+이 저장소는 이제 **최종 공개 배포 묶음 · 실기 안전 시험 · 저수준 실험장**을 맡는다. 로봇 쪽 agent 와 저수준 실행기는 `foothold-app` `apps/agent` 안에 만든다. 시뮬 학습 실험은 `foothold-lab`,
 앱 코드는 `foothold-app` 에서 한다. 세 저장소의 역할과 실기 안전선은 [AGENTS.md](AGENTS.md) 1a · 5a · 5b 절.
 
 | 무엇 | 어디 |
