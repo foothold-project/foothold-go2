@@ -30,21 +30,33 @@ jobs:
         env:
           EV: ${{ github.event_name }}
           ACT: ${{ github.event.action }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           if [ "$EV" = "issues" ] && [ "$ACT" = "closed" ]; then
-            TITLE="✅ 완료 · ${{ github.event.issue.title }}"
+            TITLE="완료 · ${{ github.event.issue.title }}"
             BODY="닫은 사람 **${{ github.event.sender.login }}** · 보드가 Done 으로 넘어갑니다"
             URL="${{ github.event.issue.html_url }}"; COLOR="1801806"
           elif [ "$EV" = "issues" ] && [ "$ACT" = "opened" ]; then
-            TITLE="🆕 새 작업 · ${{ github.event.issue.title }}"
+            TITLE="새 작업 · ${{ github.event.issue.title }}"
             BODY="등록 **${{ github.event.issue.user.login }}** · 시작일이 오늘로 기록됩니다"
             URL="${{ github.event.issue.html_url }}"; COLOR="11037960"
           else
-            # 문서 push 만 알린다 — 코드 push 까지 알리면 채널이 시끄러워 아무도 안 본다
-            CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} 2>/dev/null || true)
-            echo "$CHANGED" | grep -q '^docs/' || { echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0; }
-            TITLE="📄 문서 갱신"
+            # 문서 push 만 알린다 — 코드 push 까지 알리면 채널이 시끄러워 아무도 안 본다.
+            #
+            # ★ 두 번 틀렸다. 기록해 둔다 (2026-08-08 제로베이스 테스트에서 발견)
+            #   1차: git diff → 러너에 저장소가 없다(checkout 안 함). 항상 빈 결과.
+            #   2차: jq 로 payload 파싱 → 여전히 빈 결과. 그런데 **로그가 없어서** 왜인지 못 봤다.
+            #   교훈: 조용히 건너뛰는 분기에는 반드시 이유를 출력한다. 침묵은 디버깅을 막는다.
+            #
+            # 3차(현재): GitHub API 로 이 커밋의 파일 목록을 직접 묻는다. 가장 확실하다.
+            CHANGED=$(gh api "repos/${{ github.repository }}/commits/${{ github.sha }}"                         --jq '.files[].filename' 2>&1 || echo "")
+            echo "::group::변경 파일"; echo "$CHANGED"; echo "::endgroup::"
+            if ! echo "$CHANGED" | grep -q '^docs/'; then
+              echo "docs/ 변경 없음 → 알림 생략"
+              echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0
+            fi
+            TITLE="문서 갱신"
             BODY=$(echo "$CHANGED" | grep '^docs/' | head -5 | sed 's/^/• /')
             URL="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"; COLOR="8421504"
           fi
@@ -67,4 +79,7 @@ jobs:
                 --argjson c ${{ steps.msg.outputs.color }} \
                 --arg r "${{ github.repository }}" \
             '{embeds:[{title:$t, description:$d, url:$u, color:$c, footer:{text:$r}}]}' \
-            | curl -sS -X POST -H "Content-Type: application/json" -d @- "$HOOK"
+            | curl -sS -o /dev/null -w '%{http_code}' -X POST -H "Content-Type: application/json" -d @- "$HOOK" > /tmp/code
+          CODE=$(cat /tmp/code)
+          echo "HTTP $CODE"
+          case "$CODE" in 2*) echo "전송 확인" ;; *) echo "★ 전송 실패 — 웹훅 상태 확인 필요"; exit 1 ;; esac
