@@ -4,17 +4,16 @@
  "name": "ame2-m27001",
  "final_name": "ame2-oh2l2",
  "checkpoint": {
-  "runpod_path": "/network-volume/limseokheon/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/tp424_in_p1_s5_from17000/model_16999.pt",
-  "s3_path": "s3://rzklpc35sl/limseokheon/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/tp424_in_p1_s5_from17000/model_16999.pt",
+  "runpod_path": "<runpod-volume>/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/tp424_in_p1_s5_from17000/model_16999.pt",
   "bytes": 150409420,
   "iteration": "model_16999 of tp424_in_p1_s5_from17000: weight average of the two model_16999 (17,000 completed updates) of the runs tp424_p1_s4 (seed 1001) and tp424_p2_s4 (seed 42), both 16,500 -> 17,000 with Adam, fp32, 3 mini-batches x 4 epochs, gradient accumulation 4 (sync_record.txt); 27k counted along the lineage (user)",
   "averaged_from": [
    {
-    "path": "/network-volume/limseokheon/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/2026-11-18_00-29-16_tp424_p1_s4_adam_fp32_4x3_from16500_to17000/model_16999.pt",
+    "path": "<runpod-volume>/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/2026-11-18_00-29-16_tp424_p1_s4_adam_fp32_4x3_from16500_to17000/model_16999.pt",
     "sha256": "4ef7ec6551898661346fa856bcdee31e9b4b934a464f955b56eb801ba5548103"
    },
    {
-    "path": "/network-volume/limseokheon/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/2026-11-18_00-29-28_tp424_p2_s4_adam_fp32_4x3_from16500_to17000/model_16999.pt",
+    "path": "<runpod-volume>/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/2026-11-18_00-29-28_tp424_p2_s4_adam_fp32_4x3_from16500_to17000/model_16999.pt",
     "sha256": "216e227642e6c85e9b8edb49f4205504627dc8630402156c1e2cbfe7140bbf40"
    }
   ],
@@ -23,16 +22,16 @@
  "checkpoint_sha256": "f4eaadb495f590e02c42103f524d0841616a58d33e73b2646ddeb34dc2fb1a41",
  "source": {
   "env_yaml": {
-   "path": "/network-volume/limseokheon/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/tp424_in_p1_s5_from17000/params/env.yaml",
+   "path": "<runpod-volume>/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/tp424_in_p1_s5_from17000/params/env.yaml",
    "sha256": "48088f33708196c90c10d1e5b4971e6646796a718f3c1355e5afc68ea487c623",
    "note": "identical to the params of the source run tp424_p1_s4; tp424_p2_s4 differs only in seed, run_name, log_dir"
   },
   "agent_yaml": {
-   "path": "/network-volume/limseokheon/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/tp424_in_p1_s5_from17000/params/agent.yaml",
+   "path": "<runpod-volume>/ame2_pp1/logs/rsl_rl/go2_gaze_teacher/tp424_in_p1_s5_from17000/params/agent.yaml",
    "sha256": "855b1b578eaded8aa3a4c8c167b364bdf51e501bea204646e85d4c3f91ca1530"
   },
   "task": "Ame2-Go2-Gaze-N9P12 (twelve terrains; run/queue_tp.sh: --move2goal_vmax 1.2 --resume, --grad_accum_chunks 4, agent.algorithm.optimizer=adam use_mixed_precision=false num_learning_epochs=4 num_mini_batches=3)",
-  "code": "copy folder /network-volume/limseokheon/ame2_pp1 (not a git repository): frozen copy of ame2_p12 at 2026-11-15T15:40:47Z + run/patch_pp.py (train.py, go2_runner.py, new ppo_accum.py); code_id 101da9dd0386; manifest of go2/ame2_go2, go2/scripts, rsl_rl/rsl_rl sha256 1cbd61280e8ec3eeab6039da15cb44349a8ab69efe40c7a7f4ef6676fd9409cb identical at the end of both source runs (out/q_tp_p1_s4, out/q_tp_p2_s4) and on 2026-11-19; updates before 16,500 were made with other copies (not traced)",
+  "code": "copy folder <runpod-volume>/ame2_pp1 (not a git repository): frozen copy of ame2_p12 at 2026-11-15T15:40:47Z + run/patch_pp.py (train.py, go2_runner.py, new ppo_accum.py); code_id 101da9dd0386; manifest of go2/ame2_go2, go2/scripts, rsl_rl/rsl_rl sha256 1cbd61280e8ec3eeab6039da15cb44349a8ab69efe40c7a7f4ef6676fd9409cb identical at the end of both source runs (out/q_tp_p1_s4, out/q_tp_p2_s4) and on 2026-11-19; updates before 16,500 were made with other copies (not traced)",
   "AME2_models_py_sha256": "d88276b1a9cac8c676828af7991f50c7515726245210f5f6c09ae34c4466d14d",
   "isaaclab": "2.3.2 (isaaclab 0.54.2, isaaclab_rl 0.4.7; editable install without version control, pip freeze of the training start)",
   "isaacsim": "5.1.0-rc.19 read on fb6eecdaf880, the host of the source run tp424_p1_s4; the host of tp424_p2_s4 (5c99a0a805c7) not read",
