@@ -26,6 +26,14 @@
 | 배터리 · 온도 | 감시 15 초: `~/go2_diag/20261118-go2-readonly-boot-gate/build/go2_readonly_monitor <망 이름> 15 /tmp/pre.csv` | SOC 50 % 이상 · 관절 최고 50 °C 미만 · reserve nonzero 0 · errorlist 0 |
 | 감시를 먼저 켠다 | 서기 전에 각 절차의 녹화 스크립트 (감시 포함) 를 먼저 켠다 | `monitor.csv` 줄 수가 늘어난다 (`wc -l` 두 번) |
 
+**녹화 중 끊김 감시 (11/19 14:4x 덧붙임).** 05:20 녹화에서 141 초에 Go2 본체 쪽 (L2 · odom · IMU · lowstate) 이 한꺼번에 끊겼는데 녹화는 끝까지 「정상」 이라 아무도 몰랐다 (로봇은 계속 걸었고 카메라만 남음 · 까닭 미확인 · foothold-lab `20261119-0520-room-walk-full/map/README.md`). 그래서 녹화 스크립트 (`full_record.sh` · `uslam_record.sh`) 를 켠 뒤 **다른 터미널에서** 감시를 같이 켠다:
+
+```
+bash <이 저장소>/scripts/realtest/watch_record.sh <녹화 스크립트가 찍은 폴더> <본체 쪽 망 이름> <녹화 초>
+```
+
+간격마다 `state_age_ms` (감시 `console.log`) 와 L2 · odom · 깊이 Hz 를 `watch.log` 에 적고, 끊기면 터미널에 「!! 끊김」 과 종소리, 그 순간 망 상태 (`ip -s link` · `ip neigh` · 커널 기록) 를 `watch_drop_<시각>.txt` 로 한 번 남긴다. 녹화는 멈추지 않는다. 끊김을 보면 사람이 걷기를 멈추게 하고 (팀장 조이스틱), 기록 폴더 이름과 시각을 적는다. ROS 쪽 Hz 확인은 Jetson 에서 아직 돌려 보지 않았다 (미확인 · 첫 녹화 때 `watch.log` 의 Hz 칸이 숫자로 차는지 본다).
+
 멈춤 기준 (어느 절차든): 관절 60 °C 넘음 · reserve 0 아님 · 적색 점멸 · 이상한 소리 → 팀장이 조이스틱으로 앉힘 (L2+B). AI 는 「멈추십시오」 라고 알리기만 한다.
 
 **하지 말 것.** Jetson 에서 `apt --fix-broken install` · `apt upgrade` 금지 (L4T 고정 묶음이 깨짐). `sudo` 와 비밀번호는 팀장이 친다. 원본 기록은 회수 · SHA-256 대조 뒤에도 팀장 동의 없이 지우지 않는다.
